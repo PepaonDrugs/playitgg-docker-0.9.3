@@ -16,20 +16,20 @@ docker run -d \
   pepaondrugs/playitgg-docker:latest
 ```
 
-For arm please use
+for arm please use
 ```yaml
 docker run -d \
   --name playit-docker \
   -v playit-volume:/app \
-  pepaondrugs/playitgg-docker:v0.15.12-arm
+  pepaondrugs/playitgg-docker:arm
 ```
 
-For armv7 please use
+for armv7 please use
 ```yaml
 docker run -d \
   --name playit-docker \
   -v playit-volume:/app \
-  pepaondrugs/playitgg-docker:v0.15.12-armv7   
+  pepaondrugs/playitgg-docker:armv7   
 ```
 
 
@@ -60,7 +60,7 @@ version: "3"
 services:
   playit-docker:
     container_name: "playit-docker"
-    image: pepaondrugs/playitgg-docker:v0.15.12-arm
+    image: pepaondrugs/playitgg-docker:arm
     volumes:
         - playit-volume:/app
     restart: unless-stopped
@@ -78,7 +78,7 @@ version: "3"
 services:
   playit-docker:
     container_name: "playit-docker"
-    image: pepaondrugs/playitgg-docker:v0.15.12-armv7
+    image: pepaondrugs/playitgg-docker:armv7
     volumes:
         - playit-volume:/app
     restart: unless-stopped
