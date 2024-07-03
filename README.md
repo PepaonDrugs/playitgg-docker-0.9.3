@@ -13,6 +13,7 @@ Docker
 docker run -d \
   --name playit-docker \
   -v playit-volume:/app \
+  -v playit-secret:/secret \
   pepaondrugs/playitgg-docker:latest
 ```
 
@@ -21,6 +22,7 @@ for arm please use
 docker run -d \
   --name playit-docker \
   -v playit-volume:/app \
+  -v playit-secret:/secret \
   pepaondrugs/playitgg-docker:arm
 ```
 
@@ -29,10 +31,20 @@ for armv7 please use
 docker run -d \
   --name playit-docker \
   -v playit-volume:/app \
+  -v playit-secret:/secret \
   pepaondrugs/playitgg-docker:armv7   
 ```
 
-
+If you wanted to change the user and/or group, you will need to use an arg
+```yaml
+docker run -d \
+  --name playit-docker \
+  -v playit-volume:/app \
+  -v playit-secret:/secret \
+  --build-arg="PLAYIT_USER_UID=1000" \
+  --build-arg="PLAYIT_USER_GID=1000" \
+  pepaondrugs/playitgg-docker:latest   
+```
 
 Docker compose
 
@@ -45,9 +57,12 @@ services:
     image: pepaondrugs/playitgg-docker:latest
     volumes:
         - playit-volume:/app
+        - playit-secret:/secret
     restart: unless-stopped
 volumes:
     playit-volume:
+        external: false
+    playit-secret:
         external: false
 
 ```
@@ -63,9 +78,12 @@ services:
     image: pepaondrugs/playitgg-docker:arm
     volumes:
         - playit-volume:/app
+        - playit-secret:/secret
     restart: unless-stopped
 volumes:
     playit-volume:
+        external: false
+    playit-secret:
         external: false
 ```
 
@@ -81,9 +99,38 @@ services:
     image: pepaondrugs/playitgg-docker:armv7
     volumes:
         - playit-volume:/app
+        - playit-secret:/secret
     restart: unless-stopped
 volumes:
     playit-volume:
+        external: false
+    playit-secret:
+        external: false
+```
+
+
+Docker Compose to change the user and/or group
+
+
+```yaml
+version: "3"
+
+services:
+  playit-docker:
+    build:
+      args:
+        PLAYIT_USER_UID: 1000
+        PLAYIT_USER_GID: 1000
+    container_name: "playit-docker"
+    image: pepaondrugs/playitgg-docker:latest
+    volumes:
+        - playit-volume:/app
+        - playit-secret:/secret
+    restart: unless-stopped
+volumes:
+    playit-volume:
+        external: false
+    playit-secret:
         external: false
 ```
 
