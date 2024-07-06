@@ -12,7 +12,7 @@ Docker
 ```yaml
 docker run -d \
   --name playit-docker \
-  -v playit-volume:/app \
+  -v playit-volume:/secret \
   pepaondrugs/playitgg-docker:latest
 ```
 
@@ -20,7 +20,7 @@ for arm please use
 ```yaml
 docker run -d \
   --name playit-docker \
-  -v playit-volume:/app \
+  -v playit-volume:/secret \
   pepaondrugs/playitgg-docker:arm
 ```
 
@@ -28,7 +28,7 @@ for armv7 please use
 ```yaml
 docker run -d \
   --name playit-docker \
-  -v playit-volume:/app \
+  -v playit-volume:/secret \
   pepaondrugs/playitgg-docker:armv7   
 ```
 
@@ -36,7 +36,7 @@ If you wanted to change the user and/or group, you will need to use an arg
 ```yaml
 docker run -d \
   --name playit-docker \
-  -v playit-volume:/app \
+  -v playit-volume:/secret \
   --build-arg="PLAYIT_USER_UID=1000" \
   --build-arg="PLAYIT_USER_GID=1000" \
   pepaondrugs/playitgg-docker:latest   
@@ -52,7 +52,7 @@ services:
     container_name: "playit-docker"
     image: pepaondrugs/playitgg-docker:latest
     volumes:
-        - playit-volume:/app
+        - playit-volume:/secret
     restart: unless-stopped
 volumes:
     playit-volume:
@@ -69,7 +69,7 @@ services:
     container_name: "playit-docker"
     image: pepaondrugs/playitgg-docker:arm
     volumes:
-        - playit-volume:/app
+        - playit-volume:/secret
     restart: unless-stopped
 volumes:
     playit-volume:
@@ -87,7 +87,7 @@ services:
     container_name: "playit-docker"
     image: pepaondrugs/playitgg-docker:armv7
     volumes:
-        - playit-volume:/app
+        - playit-volume:/secret
     restart: unless-stopped
 volumes:
     playit-volume:
@@ -110,7 +110,7 @@ services:
     container_name: "playit-docker"
     image: pepaondrugs/playitgg-docker:latest
     volumes:
-        - playit-volume:/app
+        - playit-volume:/secret
     restart: unless-stopped
 volumes:
     playit-volume:
