@@ -6,7 +6,7 @@ RUN mkdir -p /app /secret && \
     groupadd -g ${PLAYIT_USER_GID} playit && \
     useradd playit -u ${PLAYIT_USER_UID} -g ${PLAYIT_USER_GID} && \
     apt-get update && \
-    apt-get install ca-certificates -y wget && \
+    apt-get install -y ca-certificates wget && \
     update-ca-certificates && \
     wget https://github.com/playit-cloud/playit-agent/releases/download/v0.15.13/playit-linux-armv7 -o /app/playit-linux-armv7 && \
     chown -R playit:playit /app && \
