@@ -2,6 +2,9 @@ FROM ubuntu:focal
 ARG PLAYIT_USER_UID="1000"
 ARG PLAYIT_USER_GID="1000"
 
+# Set DEBIAN_FRONTEND to noninteractive to avoid frontend issues
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN mkdir -p /app /secret && \
     groupadd -g ${PLAYIT_USER_GID} playit && \
     useradd playit -u ${PLAYIT_USER_UID} -g ${PLAYIT_USER_GID} && \
