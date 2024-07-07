@@ -1,15 +1,18 @@
 FROM ubuntu:focal
-RUN mkdir /app
-WORKDIR '/app'
-RUN apt-get update
-RUN apt-get install ca-certificates -y wget
-RUN update-ca-certificates
+ARG PLAYIT_USER_UID="1000"
+ARG PLAYIT_USER_GID="1000"
 
-RUN wget https://github.com/playit-cloud/playit-agent/releases/download/v0.15.13/playit-linux-amd64 -O /app/playit-linux-amd64
-
-
-RUN chmod 0755 /app/playit-linux-amd64
-
-
-CMD chmod 0755 /app/playit-linux-amd64
-CMD /app/playit-linux-amd64 -s
+RUN mkdir -p /app /secret && \
+    groupadd -g ${PLAYIT_USER_GID} playit && \
+    useradd playit -u ${PLAYIT_USER_UID} -g ${PLAYIT_USER_GID} && \
+    apt-get update && \
+    apt-get install ca-certificates -y wget && \
+    update-ca-certificates && \
+    wget https://github.com/playit-cloud/playit-agent/releases/download/v0.15.13/playit-linux-amd64 -O /app/playit-linux-amd64 && \
+    chown -R playit:playit /app && \
+    chown -R playit:playit /secret && \
+    chmod 0755 /app/playit-linux-amd64
+   
+WORKDIR '/secret'
+USER playit
+CMD ../app/playit-linux-amd64 -s
