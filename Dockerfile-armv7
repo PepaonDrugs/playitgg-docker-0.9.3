@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM debian
 ARG PLAYIT_USER_UID="1000"
 ARG PLAYIT_USER_GID="1000"
 
