@@ -41,4 +41,4 @@ jobs:
         platforms: linux/amd64,linux/ppc64le
         file: ./Dockerfile
         push: true
-        tags: pepaondrugs/playitgg-docker:latest,pepaondrugs/playitgg-docker:v0.15.13
+        tags: pepaondrugs/playitgg-docker:latest,pepaondrugs/playitgg-docker:v0.15.18
