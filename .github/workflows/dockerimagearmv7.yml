@@ -41,4 +41,4 @@ jobs:
         platforms: linux/arm/v7
         file: ./Dockerfile-armv7
         push: true
-        tags: pepaondrugs/playitgg-docker:armv7,pepaondrugs/playitgg-docker:v0.15.18-armv7
+        tags: pepaondrugs/playitgg-docker:armv7,pepaondrugs/playitgg-docker:v0.15.19-armv7
