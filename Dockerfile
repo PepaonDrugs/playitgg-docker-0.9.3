@@ -8,7 +8,7 @@ RUN mkdir -p /app /secret && \
     apt-get update && \
     apt-get install ca-certificates -y wget && \
     update-ca-certificates && \
-    wget https://github.com/playit-cloud/playit-agent/releases/download/v0.15.22/playit-linux-amd64 -O /app/playit-linux-amd64 && \
+    wget https://github.com/playit-cloud/playit-agent/releases/download/v0.15.23/playit-linux-amd64 -O /app/playit-linux-amd64 && \
     chown -R playit:playit /app && \
     chown -R playit:playit /secret && \
     chmod 0755 /app/playit-linux-amd64
